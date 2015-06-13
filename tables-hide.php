@@ -186,7 +186,7 @@ class AdminerTablesHide {
 		  return -1;
 		}
     </script>
-    <p class="jsonly"><input onkeyup="filterTables(this.value);"></p>
+    <p class="jsonly">Filter: <input onkeyup="filterTables(this.value);"></p>
     <?php
     $adminer = adminer();
     

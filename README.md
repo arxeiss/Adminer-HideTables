@@ -3,7 +3,7 @@ Plugin to Adminer for hiding tables in left list
 
 tables-hide.min.php contains minifed JS and CSS using http://gpbmike.github.io/refresh-sf/
 
-# Install
+## Install
 
 How to install plugins to Adminer: http://www.adminer.org/plugins/
 
