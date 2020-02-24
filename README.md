@@ -1,13 +1,22 @@
 # Adminer-HideTables
-Plugin to Adminer for hiding tables in left list
 
-tables-hide.min.php contains minifed JS and CSS using http://gpbmike.github.io/refresh-sf/
+[![Adminer](https://img.shields.io/badge/adminer-%3E%3D4.4.0-blue)](https://www.adminer.org)
 
-## Install
+Plugin to Adminer for hiding tables in the left panel
 
-How to install plugins to Adminer: http://www.adminer.org/plugins/
+- How to install plugins to Adminer: http://www.adminer.org/plugins/
+- About plugin on http://www.kutac.cz/blog/weby-a-vse-okolo/adminer-skryvani-tabulek/  (🇨🇿 - Czech only)
+- `tables-hide.min.php` contains minifed JS and CSS using http://gpbmike.github.io/refresh-sf/
 
-About plugin on http://www.kutac.cz/blog/weby-a-vse-okolo/adminer-skryvani-tabulek/
+## Usage 
+
+More about usage plugins in Adminer is on http://www.adminer.org/plugins/
+
+```php
+$plugins = [
+    new AdminerTablesHide(),
+];
+```
 
 ### Changelog
 **9.3.2018**
