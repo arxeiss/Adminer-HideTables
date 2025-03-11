@@ -1,29 +1,29 @@
 <?php
 
-/** 
+/**
  * Enable hiding tables in menu list
  *
  * Install to Adminer on http://www.adminer.org/plugins/
  * @author Pavel Kutáč, http://www.kutac.cz/
- * 
+ *
  * Filter inspiration by Jakub Vrana: https://raw.githubusercontent.com/vrana/adminer/master/plugins/tables-filter.php
- * 
+ *
  */
 class AdminerTablesHide {
-	
+
 	function tablesPrint($tables) {
-		$jsonTables = array();    
+		$jsonTables = array();
 		foreach ($tables as $table => $status) {
 		  $jsonTables[] = array(
 			'table' => $table,
-			'isView' => is_view($status),
-			'show' => support("table") || support("indexes"),
+			'isView' => Adminer\is_view($status),
+			'show' => Adminer\support("table") || Adminer\support("indexes"),
 			'selected' => in_array($table, array($_GET["table"], $_GET["create"], $_GET["indexes"], $_GET["foreign"], $_GET["trigger"], $_GET["select"], $_GET["edit"], $_GET["view"])),
-			'fullTableName' => $_GET[DRIVER]."-".$_GET["db"]."-".$table
+			'fullTableName' => $_GET[Adminer\DRIVER]."-".$_GET["db"]."-".$table
 		  );
 		}
 		?>
-		<style<?php echo nonce(); ?>>
+		<style<?php echo Adminer\nonce(); ?>>
 			p.toggleTableVisible{
 				cursor: pointer;
 			}
@@ -36,7 +36,7 @@ class AdminerTablesHide {
 			#menu.hiddenVisible #tables li.hiddenTable{
 				display: inline;
 				opacity: 0.5;
-			}		  
+			}
 			#tables li.filtered, #menu.hiddenVisible #tables li.hiddenTable.filtered{
 				display: none;
 			}
@@ -59,13 +59,13 @@ class AdminerTablesHide {
 		<ul id="tables"></ul>
 		<p class="toggleTableVisible"><span class="showT">Show</span><span class="hideT">Hide</span> hidden tables</p>
 
-		<script<?php echo nonce(); ?>>
+		<script<?php echo Adminer\nonce(); ?>>
 			var menuTables = <?php echo json_encode($jsonTables); ?>;
-			var baseUrl = <?php echo json_encode(ME); ?>;
-			var selectLang = <?php echo json_encode(lang('select')); ?>;
-			var structureLang = <?php echo json_encode(lang('Show structure')); ?>;
+			var baseUrl = <?php echo json_encode(Adminer\ME); ?>;
+			var selectLang = <?php echo json_encode(Adminer\lang('select')); ?>;
+			var structureLang = <?php echo json_encode(Adminer\lang('Show structure')); ?>;
 			var hiddenTables = [];
-			var currentDatabase = "<?php echo $_GET[DRIVER]."-".$_GET["db"]; ?>";
+			var currentDatabase = "<?php echo $_GET[Adminer\DRIVER]."-".$_GET["db"]; ?>";
 			var menuBlock = qs("#menu");
 			var tablesEl = qs("#tables");
 			/**
@@ -126,7 +126,7 @@ class AdminerTablesHide {
 			function filterTables() {
 				value = this.value || "";
 				tablesEl.innerHTML = "";
-				for (var i = 0; i < menuTables.length; i++ ) {          
+				for (var i = 0; i < menuTables.length; i++ ) {
 					if (menuTables[i].table.indexOf(value) >= 0) {
 						var spn = document.createElement("li");
 						if (menuTables[i].selected) {
@@ -208,7 +208,7 @@ class AdminerTablesHide {
 			});
 			initTables();
 		</script>
-		<?php 
+		<?php
 		return true;
-	}	
+	}
 }
